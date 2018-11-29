@@ -30,7 +30,7 @@ public class Company {
         this.employees = employees;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
     private List<Employee> employees;
 
     public Long getId() {
