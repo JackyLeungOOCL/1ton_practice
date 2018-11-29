@@ -1,9 +1,9 @@
 package com.tw.apistackbase.core;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.concurrent.ConcurrentMap;
 
 @Entity
 public class Employee {
@@ -13,11 +13,24 @@ public class Employee {
     private String name;
     private int age;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     public Employee() {}
 
     public Employee(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getName() {
